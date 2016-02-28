@@ -44,10 +44,15 @@ testIt() {
 	cat out/x/y/z/Entidade.java
 }
 
+AppleShowAllFiles() {
+	defaults write com.apple.finder AppleShowAllFiles YES
+	sudo killall Finder
+}
+
 if [ -z "$1" ] ; then
 	echo
 	echo "Error!"
-	echo "Usage: Replacer.sh compileIt | clean[Bin|Classes|Out] | runIt | testIt"
+	echo "Usage: Replacer.sh compileIt | clean[Bin|Classes|Out] | runIt | testIt | AppleShowAllFiles"
 	echo
 else
 	$1

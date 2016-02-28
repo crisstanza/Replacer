@@ -89,7 +89,7 @@ public final class UtilsReplacer {
 
 	public final String replace(final String fileContents, final Class<?> clazz) {
 		String newFileContents = fileContents;
-		String entity = clazz.getSimpleName();
+		final String entity = clazz.getSimpleName();
 		newFileContents = newFileContents.replace(ENTIDADE, entity);
 		newFileContents = newFileContents.replace(ENTIDADE_lower, entity.toLowerCase());
 		newFileContents = newFileContents.replace(ENTIDADE_upper, entity.toUpperCase());
