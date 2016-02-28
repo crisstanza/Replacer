@@ -94,14 +94,13 @@ public final class UtilsReplacer {
 		newFileContents = newFileContents.replace(ENTIDADE_lower, entity.toLowerCase());
 		newFileContents = newFileContents.replace(ENTIDADE_upper, entity.toUpperCase());
 		newFileContents = newFileContents.replace(ENTIDADE_camel, this.camelCase(entity));
-		for (int i = 0; i < 2; i++) {
-			final int[] n_start_end = new int[3];
-			n_start_end[0] = 0;
-			final String fieldTemplate = this.getFieldTemplate(newFileContents, n_start_end);
-			if (n_start_end[1] >= 0) {
+		while (true) {
+			final int[] start_end = new int[2];
+			final String fieldTemplate = this.getFieldTemplate(newFileContents, start_end);
+			if (start_end[0] >= 0) {
 				final String[] parts = new String[2];
-				parts[0] = newFileContents.substring(0, n_start_end[1]);
-				parts[1] = newFileContents.substring(n_start_end[2], newFileContents.length());
+				parts[0] = newFileContents.substring(0, start_end[0]);
+				parts[1] = newFileContents.substring(start_end[1], newFileContents.length());
 				final StringBuilder fields = new StringBuilder();
 				final Field[] classFields = clazz.getDeclaredFields();
 				for (final Field classField : classFields) {
@@ -115,6 +114,8 @@ public final class UtilsReplacer {
 					);
 				}
 				newFileContents = parts[0] + fields.toString() + parts[1];
+			} else {
+				break;
 			}
 		}
 		return newFileContents;
@@ -132,12 +133,12 @@ public final class UtilsReplacer {
 		}
 	}
 
-	private final String getFieldTemplate(final String str, final int[] n_start_end) {
-		n_start_end[1] = str.indexOf(FIELDS);
-		if (n_start_end[1] >= 0) {
-			n_start_end[2] = str.indexOf(FIELDS_END);
-			final String template = str.substring(n_start_end[0]).substring(n_start_end[1] + FIELDS.length(), n_start_end[2]);
-			n_start_end[2] += FIELDS_END.length();
+	private final String getFieldTemplate(final String str, final int[] start_end) {
+		start_end[0] = str.indexOf(FIELDS);
+		if (start_end[0] >= 0) {
+			start_end[1] = str.indexOf(FIELDS_END);
+			final String template = str.substring(start_end[0] + FIELDS.length(), start_end[1]);
+			start_end[1] += FIELDS_END.length();
 			return template;
 		} else {
 			return "";
