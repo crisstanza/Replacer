@@ -1,0 +1,7 @@
+Nome da entidade: {ENTIDADE}
+Minúsculo: {ENTIDADE:lower}
+Maiúsculo: {ENTIDADE:upper}
+{CAMPOS}
+	nome: {CAMPO}, tipo: {CAMPO_TIPO}
+{\CAMPOS}
+Minúsculo: {ENTIDADE:lower}

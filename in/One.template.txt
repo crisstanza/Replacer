@@ -1,0 +1,1 @@
+|{ENTIDADE}|{ENTIDADE:lower}|{ENTIDADE:upper}|
