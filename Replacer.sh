@@ -52,7 +52,7 @@ AppleShowAllFiles() {
 if [ -z "$1" ] ; then
 	echo
 	echo "Error!"
-	echo "Usage: Replacer.sh compileIt | clean[Bin|Classes|Out] | runIt | testIt | AppleShowAllFiles"
+	echo "Usage: ./Replacer.sh compileIt | clean[Bin|Classes|Out] | runIt | testIt | AppleShowAllFiles"
 	echo
 else
 	$1
