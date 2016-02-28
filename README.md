@@ -2,7 +2,7 @@
 File contents replacer based on Java classes.
 
 
-## Turn this:
+## Turn this (\_ENTIDADE-camel\_.template.java):
 
 	package x.y.z;
 
@@ -29,7 +29,7 @@ File contents replacer based on Java classes.
 
 	}
 
-### and this:
+### and this (Car.java):
 
 	package model;
 
@@ -42,7 +42,7 @@ File contents replacer based on Java classes.
 
 	}
 
-## Into this:
+## Into this (Car.java):
 
 	package x.y.z;
 
