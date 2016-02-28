@@ -7,8 +7,8 @@ File contents replacer based on Java classes.
 	package x.y.z;
 
 	/**
- 	* @author 
- 	*/
+ 	 * @author 
+ 	 */
 	public final class {ENTIDADE} {
 
 	{CAMPOS}
