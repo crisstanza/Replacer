@@ -71,3 +71,14 @@ File contents replacer based on Java classes.
 		}
 
 	}
+
+### Initial setup:
+
+	ssh-keygen -t rsa -b 4096 -C "youremail"
+	cat ~/.ssh/id_rsa.pub
+
+Add the key to GitHub and then...
+
+	mkdir ~/GitHub
+	cd ~/GitHub
+	git clone git@github.com:crisstanza/Replacer.git
