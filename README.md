@@ -74,7 +74,7 @@ File contents replacer based on Java classes.
 
 ### Initial setup:
 
-	ssh-keygen -t rsa -b 4096 -C "reader@github"
+	ssh-keygen -t rsa -b 4096 -C "Replacer@github"
 	cat ~/.ssh/id_rsa.pub
 
 Add the key to GitHub and then...
