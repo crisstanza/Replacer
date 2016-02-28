@@ -1,6 +1,9 @@
 # Replacer
 File contents replacer based on Java classes.
 
+## Usage:
+
+./Replacer.sh compileIt | clean[Bin|Classes|Out] | runIt | testIt | AppleShowAllFiles
 
 ## Turn this (\_ENTIDADE-camel\_.template.java):
 
