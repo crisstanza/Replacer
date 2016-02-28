@@ -93,7 +93,7 @@ public final class UtilsReplacer {
 		newFileContents = newFileContents.replace(ENTIDADE, entity);
 		newFileContents = newFileContents.replace(ENTIDADE_lower, entity.toLowerCase());
 		newFileContents = newFileContents.replace(ENTIDADE_upper, entity.toUpperCase());
-		newFileContents = newFileContents.replace(ENTIDADE_camel, this.camelCase(entity.toUpperCase()));
+		newFileContents = newFileContents.replace(ENTIDADE_camel, this.camelCase(entity));
 		for (int i = 0; i < 2; i++) {
 			final int[] n_start_end = new int[3];
 			n_start_end[0] = 0;
@@ -128,7 +128,7 @@ public final class UtilsReplacer {
 		} else if (str.length() == 1) {
 			return str.toUpperCase();
 		} else {
-			return str.substring(0, 1).toUpperCase() + str.substring(1);
+			return str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
 		}
 	}
 
