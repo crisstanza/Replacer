@@ -33,15 +33,19 @@ runIt() {
 }
 
 compileIt() {
-	echo wip...
+	find src | grep .java > files.txt
+	javac -cp ${CP} -d classes @files.txt
+	
+	rm files.txt
 }
 
 testIt() {
-	sleep 1
 	cat out/One.txt
 	cat out/Two.txt
 	cat out/x/y/z/Car.java
-	cat out/x/y/z/Entidade.java
+	cat out/x/y/z/Pessoa.java
+	cat out/car.html
+	cat out/pessoa.html
 }
 
 AppleShowAllFiles() {
@@ -49,10 +53,15 @@ AppleShowAllFiles() {
 	sudo killall Finder
 }
 
+AppleHideAllFiles() {
+	defaults write com.apple.finder AppleShowAllFiles NO
+	sudo killall Finder
+}
+
 if [ -z "$1" ] ; then
 	echo
 	echo "Error!"
-	echo "Usage: ./Replacer.sh compileIt | clean[Bin|Classes|Out] | runIt | testIt | AppleShowAllFiles"
+	echo "Usage: ./Replacer.sh (compileIt | clean[Bin|Classes|Out] | runIt | testIt | Apple(Show|Hide)AllFiles)"
 	echo
 else
 	$1
