@@ -27,7 +27,7 @@ public final class Replacer {
 		for (final File file : this.filesIn) {
 			for (final Class<?> entity : entities) {
 				final String fileContents = utils.readFrom(file);
-				final String fileContentsReplaced = utils.replace(fileContents, entity);
+				final String fileContentsReplaced = utils.replace(fileContents, entity, this.entities);
 				utils.writeTo(file, entity, fileContentsReplaced);
 			}
 		}

@@ -40,12 +40,13 @@ compileIt() {
 }
 
 testIt() {
-	cat out/One.txt
-	cat out/Two.txt
 	cat out/x/y/z/Car.java
 	cat out/x/y/z/Pessoa.java
 	cat out/car.html
 	cat out/pessoa.html
+	cat out/One.txt
+	cat out/Two.txt
+	cat out/Three.txt
 }
 
 AppleShowAllFiles() {

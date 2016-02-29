@@ -1,7 +1,6 @@
-Nome da entidade- Car
-Minúsculo- car
-Maiúsculo- CAR
-	nome- id, tipo- Integer
-	nome- date, tipo- Date
-Minúsculo- car
+Nome da entidade: Car
+Maiúsculo: CAR
+	nome: id, tipo: Integer
+	nome: date, tipo: Date
+Minúsculo: car
 
