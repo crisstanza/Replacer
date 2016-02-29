@@ -1,7 +1,6 @@
-Nome da entidade- _ENTIDADE_
-Minúsculo- _ENTIDADE-lower_
-Maiúsculo- _ENTIDADE-upper_
+Nome da entidade: _ENTIDADE_
+Maiúsculo: _ENTIDADE-upper_
 _CAMPOS_
-	nome- _CAMPO_, tipo- _CAMPO_TIPO_
+	nome: _CAMPO_, tipo: _CAMPO_TIPO_
 _\CAMPOS_
-Minúsculo- _ENTIDADE-lower_
+Minúsculo: _ENTIDADE-lower_
