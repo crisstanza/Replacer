@@ -1,5 +1,3 @@
-.
-	nome: Pessoa
-	nome: Car
-.
+nome: Pessoa
+nome: Car
 

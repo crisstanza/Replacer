@@ -35,7 +35,6 @@ runIt() {
 compileIt() {
 	find src | grep .java > files.txt
 	javac -cp ${CP} -d classes @files.txt
-	
 	rm files.txt
 }
 

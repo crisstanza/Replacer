@@ -21,23 +21,23 @@ public final class UtilsReplacer {
 
 	private static final String PACKAGE_space = "package ";
 
-	private static final String _FIELDS_ = "_CAMPOS_" + System.lineSeparator();
-	private static final String _FIELDS_END_ = "_\\CAMPOS_" + System.lineSeparator();
+	private static final String $FIELDS$ = "$FIELDS$" + System.lineSeparator();
+	private static final String $$FIELDS$ = "$$FIELDS$" + System.lineSeparator();
 
-	private static final String _FIELD_ = "_CAMPO_";
-	private static final String _FIELD_TYPE_form = "_CAMPO_TIPO_form";
-	private static final String _FIELD_camel_ = "_CAMPO-camel_";
-	private static final String _FIELD_upper_ = "_CAMPO-upper_";
-	private static final String _FIELD_lower_ = "_CAMPO-lower_";
-	private static final String _FIELD_TYPE_ = "_CAMPO_TIPO_";
+	private static final String $FIELD$ = "$FIELD$";
+	private static final String $FIELD_TYPE$form$ = "$FIELD_TYPE_form";
+	private static final String $FIELD_camel$ = "$FIELD_camel$";
+	private static final String $FIELD_upper$ = "$FIELD_upper$";
+	private static final String $FIELD_lower$ = "$FIELD_lower$";
+	private static final String $FIELD_TYPE$ = "$FIELD_TYPE$";
 
-	private static final String _ENTITIES_ = "_ENTIDADES_" + System.lineSeparator();
-	private static final String _ENTITIES_END_ = "_\\ENTIDADES_" + System.lineSeparator();
+	private static final String $ENTITIES$ = "$ENTITIES$" + System.lineSeparator();
+	private static final String $$ENTITIES_END$ = "$$ENTITIES$" + System.lineSeparator();
 
-	private static final String _ENTITY_ = "_ENTIDADE_";
-	private static final String _ENTITY_lower = "_ENTIDADE-lower_";
-	private static final String _ENTITY_upper = "_ENTIDADE-upper_";
-	private static final String _ENTITY_camel = "_ENTIDADE-camel_";
+	private static final String $ENTITY$ = "$ENTITY$";
+	private static final String $ENTITY_lower$ = "$ENTITY_lower$";
+	private static final String $ENTITY_upper$ = "$ENTITY_upper$";
+	private static final String $ENTITY_camel$ = "$ENTITY_camel$";
 
 	private static final UtilsReplacer instance = new UtilsReplacer();
 
@@ -89,10 +89,10 @@ public final class UtilsReplacer {
 
 	private final String replaceFileName(final String entityName, final String name) {
 		return name.replace(template_dot, "")//
-				.replace(_ENTITY_, entityName)//
-				.replace(_ENTITY_lower, entityName.toLowerCase())//
-				.replace(_ENTITY_upper, entityName.toUpperCase())//
-				.replace(_ENTITY_camel, this.camel(entityName))//
+				.replace($ENTITY$, entityName)//
+				.replace($ENTITY_lower$, entityName.toLowerCase())//
+				.replace($ENTITY_upper$, entityName.toUpperCase())//
+				.replace($ENTITY_camel$, this.camel(entityName))//
 				;
 	}
 
@@ -108,10 +108,10 @@ public final class UtilsReplacer {
 				final StringBuilder fields = new StringBuilder();
 				for (final Class<?> clazzAux : classes) {
 					fields.append(entityTemplate//
-							.replace(_ENTITY_, clazzAux.getSimpleName())//
-							.replace(_ENTITY_lower, clazzAux.getSimpleName().toLowerCase())//
-							.replace(_ENTITY_upper, clazzAux.getSimpleName().toUpperCase())//
-							.replace(_ENTITY_camel, this.camel(clazzAux.getSimpleName()))//
+							.replace($ENTITY$, clazzAux.getSimpleName())//
+							.replace($ENTITY_lower$, clazzAux.getSimpleName().toLowerCase())//
+							.replace($ENTITY_upper$, clazzAux.getSimpleName().toUpperCase())//
+							.replace($ENTITY_camel$, this.camel(clazzAux.getSimpleName()))//
 					);
 				}
 				newFileContents = parts[0] + fields.toString() + parts[1];
@@ -132,12 +132,12 @@ public final class UtilsReplacer {
 					if (!Modifier.isStatic(classFieldAux.getModifiers())) {
 						final String classFieldName = classFieldAux.getName();
 						fields.append(fieldTemplate//
-								.replace(_FIELD_lower_, classFieldName.toLowerCase())//
-								.replace(_FIELD_upper_, classFieldName.toUpperCase())//
-								.replace(_FIELD_camel_, this.camel(classFieldName))//
-								.replace(_FIELD_TYPE_form, this.form(classFieldAux.getType().getSimpleName()))//
-								.replace(_FIELD_TYPE_, classFieldAux.getType().getSimpleName())//
-								.replace(_FIELD_, classFieldName)//
+								.replace($FIELD_lower$, classFieldName.toLowerCase())//
+								.replace($FIELD_upper$, classFieldName.toUpperCase())//
+								.replace($FIELD_camel$, this.camel(classFieldName))//
+								.replace($FIELD_TYPE$form$, this.form(classFieldAux.getType().getSimpleName()))//
+								.replace($FIELD_TYPE$, classFieldAux.getType().getSimpleName())//
+								.replace($FIELD$, classFieldName)//
 						);
 					}
 				}
@@ -147,10 +147,10 @@ public final class UtilsReplacer {
 			}
 		}
 		final String entity = clazz.getSimpleName();
-		newFileContents = newFileContents.replace(_ENTITY_, entity);
-		newFileContents = newFileContents.replace(_ENTITY_lower, entity.toLowerCase());
-		newFileContents = newFileContents.replace(_ENTITY_upper, entity.toUpperCase());
-		newFileContents = newFileContents.replace(_ENTITY_camel, this.camel(entity));
+		newFileContents = newFileContents.replace($ENTITY$, entity);
+		newFileContents = newFileContents.replace($ENTITY_lower$, entity.toLowerCase());
+		newFileContents = newFileContents.replace($ENTITY_upper$, entity.toUpperCase());
+		newFileContents = newFileContents.replace($ENTITY_camel$, this.camel(entity));
 		return newFileContents;
 
 	}
@@ -172,11 +172,11 @@ public final class UtilsReplacer {
 	}
 
 	private final String getFieldTemplate(final String str, final int[] start_end) {
-		start_end[0] = str.indexOf(_FIELDS_);
+		start_end[0] = str.indexOf($FIELDS$);
 		if (start_end[0] >= 0) {
-			start_end[1] = str.indexOf(_FIELDS_END_);
-			final String template = str.substring(start_end[0] + _FIELDS_.length(), start_end[1]);
-			start_end[1] += _FIELDS_END_.length();
+			start_end[1] = str.indexOf($$FIELDS$, start_end[0]);
+			final String template = str.substring(start_end[0] + $FIELDS$.length(), start_end[1]);
+			start_end[1] += $$FIELDS$.length();
 			return template;
 		} else {
 			return "";
@@ -184,11 +184,11 @@ public final class UtilsReplacer {
 	}
 
 	private final String getEntityTemplate(final String str, final int[] start_end) {
-		start_end[0] = str.indexOf(_ENTITIES_);
+		start_end[0] = str.indexOf($ENTITIES$);
 		if (start_end[0] >= 0) {
-			start_end[1] = str.indexOf(_ENTITIES_END_);
-			final String template = str.substring(start_end[0] + _ENTITIES_.length(), start_end[1]);
-			start_end[1] += _ENTITIES_END_.length();
+			start_end[1] = str.indexOf($$ENTITIES_END$, start_end[0]);
+			final String template = str.substring(start_end[0] + $ENTITIES$.length(), start_end[1]);
+			start_end[1] += $$ENTITIES_END$.length();
 			return template;
 		} else {
 			return "";

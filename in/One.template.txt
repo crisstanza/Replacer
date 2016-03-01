@@ -1,1 +1,1 @@
-|_ENTIDADE_|_ENTIDADE-lower_|_ENTIDADE-upper_|
+|$ENTITY$|$ENTITY_lower$|$ENTITY_upper$|
