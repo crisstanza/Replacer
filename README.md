@@ -22,10 +22,10 @@ File contents replacer based on Java classes.
 		}
 	
 	$FIELDS$
-		public final $FIELD_TYPE$ get$FIELD-camel$() {
+		public final $FIELD_TYPE$ get$FIELD_camel$() {
 			return this.$FIELD$;
 		}
-		public final void set$FIELD-camel$(final $FIELD_TYPE$ $FIELD$) {
+		public final void set$FIELD_camel$(final $FIELD_TYPE$ $FIELD$) {
 			this.$FIELD$ = $FIELD$;
 		}
 	$\FIELDS$
@@ -124,6 +124,19 @@ File contents replacer based on Java classes.
 	
 	</body>
 	</html>
+
+## Or even this (Three.template.txt):
+
+	$ENTITIES$
+	nome: $ENTITY$
+	$$ENTITIES$
+
+and Car.java and Pessoa.java
+
+### Into this (Three.txt):
+
+	nome: Pessoa
+	nome: Car
 
 ### Initial setup:
 
