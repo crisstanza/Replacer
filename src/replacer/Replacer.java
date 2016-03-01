@@ -3,6 +3,7 @@ package replacer;
 import java.io.File;
 
 import model.Car;
+import model.ChaveAcesso;
 import model.Pessoa;
 import replacer.utils.UtilsReplacer;
 
@@ -12,7 +13,7 @@ import replacer.utils.UtilsReplacer;
 public final class Replacer {
 
 	private final Class<?>[] entities = { //
-			Pessoa.class, Car.class //
+		Pessoa.class, Car.class, ChaveAcesso.class //
 	};
 
 	private final UtilsReplacer utils;
