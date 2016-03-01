@@ -5,30 +5,30 @@ File contents replacer based on Java classes.
 
 	./Replacer.sh (compileIt | clean[Bin|Classes|Out] | runIt | testIt | Apple(Show|Hide)AllFiles)
 
-## Turn this (\_ENTIDADE\_.template.java):
+## Turn this ($ENTITY$.template.java):
 
 	package x.y.z;
 	
 	/**
 	 * @author 
 	 */
-	public final class _ENTIDADE_ {
+	public final class $ENTITY$ {
 	
-	_CAMPOS_
-		private _CAMPO_TIPO_ _CAMPO_;
-	_\CAMPOS_
+	$FIELDS$
+		private $FIELD_TYPE$ $FIELD$;
+	$\FIELDS$
 	
-		private _ENTIDADE_() {
+		private $ENTITY$() {
 		}
 	
-	_CAMPOS_
-		public final _CAMPO_TIPO_ get_CAMPO-camel_() {
-			return this._CAMPO_;
+	$FIELDS$
+		public final $FIELD_TYPE$ get$FIELD-camel$() {
+			return this.$FIELD$;
 		}
-		public final void set_CAMPO-camel_(final _CAMPO_TIPO_ _CAMPO_) {
-			this._CAMPO_ = _CAMPO_;
+		public final void set$FIELD-camel$(final $FIELD_TYPE$ $FIELD$) {
+			this.$FIELD$ = $FIELD$;
 		}
-	_\CAMPOS_
+	$\FIELDS$
 	
 	}
 
@@ -77,17 +77,17 @@ File contents replacer based on Java classes.
 	
 	}
 
-## Or this (\_ENTIDADE-lower\_.template.html):
+## Or this ($ENTITY_lower$.template.html):
 
 	<html>
 	<body>
 	
-	<h1>_ENTIDADE_</h1>
+	<h1>$ENTITY$</h1>
 	
 	<form>
-	_CAMPOS_
-		<input type="_CAMPO_TIPO_form" name="_CAMPO_" value="${_ENTIDADE-lower_._CAMPO_}" />
-	_\CAMPOS_
+	$FIELDS$
+		<input type="$FIELD_TYPE_form$" name="$FIELD$" value="${$ENTITY_lower$.$FIELD$}" />
+	$$FIELDS$
 	</form>
 	
 	</body>
