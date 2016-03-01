@@ -1,5 +1,3 @@
-.
-_ENTIDADES_
-	nome: _ENTIDADE_
-_\ENTIDADES_
-.
+$ENTITIES$
+nome: $ENTITY$
+$$ENTITIES$

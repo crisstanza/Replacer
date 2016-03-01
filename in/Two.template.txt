@@ -1,6 +1,6 @@
-Nome da entidade: _ENTIDADE_
-Maiúsculo: _ENTIDADE-upper_
-_CAMPOS_
-	nome: _CAMPO_, tipo: _CAMPO_TIPO_
-_\CAMPOS_
-Minúsculo: _ENTIDADE-lower_
+Nome da entidade: $ENTITY$
+Maiúsculo: $ENTITY_upper$
+$FIELDS$
+	nome: $FIELD$, tipo: $FIELD_TYPE$
+$$FIELDS$
+Minúsculo: $ENTITY_lower$
