@@ -36,8 +36,12 @@ public final class UtilsReplacer {
 
 	private static final String $ENTITY$ = "$ENTITY$";
 	private static final String $ENTITY_lower$ = "$ENTITY_lower$";
+	private static final String $ENTITY_first_lower$ = "$ENTITY_first_lower$";
 	private static final String $ENTITY_upper$ = "$ENTITY_upper$";
 	private static final String $ENTITY_camel$ = "$ENTITY_camel$";
+	private static final String $ENTITY_plural$ = "$ENTITY_plural$";
+	private static final String $ENTITY_lower_plural$ = "$ENTITY_lower_plural$";
+	private static final String $ENTITY_first_lower_plural$ = "$ENTITY_first_lower_plural$";
 
 	private static final UtilsReplacer instance = new UtilsReplacer();
 
@@ -89,11 +93,15 @@ public final class UtilsReplacer {
 
 	private final String replaceFileName(final String entityName, final String name) {
 		return name.replace(template_dot, "")//
-				.replace($ENTITY$, entityName)//
-				.replace($ENTITY_lower$, entityName.toLowerCase())//
-				.replace($ENTITY_upper$, entityName.toUpperCase())//
-				.replace($ENTITY_camel$, this.camel(entityName))//
-				;
+			.replace($ENTITY$, entityName)//
+			.replace($ENTITY_lower$, entityName.toLowerCase())//
+			.replace($ENTITY_first_lower$, this.firstLower(entityName))//
+			.replace($ENTITY_upper$, entityName.toUpperCase())//
+			.replace($ENTITY_camel$, this.firstUpper(entityName))//
+			.replace($ENTITY_plural$, this.plural(entityName))//
+			.replace($ENTITY_lower_plural$, this.plural(entityName).toLowerCase())//
+			.replace($ENTITY_first_lower_plural$, this.firstLower(this.plural(entityName)))//
+			;
 	}
 
 	public final String replace(final String fileContents, final Class<?> clazz, final Class<?>[] classes) {
@@ -107,11 +115,16 @@ public final class UtilsReplacer {
 				parts[1] = newFileContents.substring(start_end[1], newFileContents.length());
 				final StringBuilder fields = new StringBuilder();
 				for (final Class<?> clazzAux : classes) {
+					final String entityName = clazzAux.getSimpleName();
 					fields.append(entityTemplate//
-							.replace($ENTITY$, clazzAux.getSimpleName())//
-							.replace($ENTITY_lower$, clazzAux.getSimpleName().toLowerCase())//
-							.replace($ENTITY_upper$, clazzAux.getSimpleName().toUpperCase())//
-							.replace($ENTITY_camel$, this.camel(clazzAux.getSimpleName()))//
+						.replace($ENTITY$, entityName)//
+						.replace($ENTITY_lower$, entityName.toLowerCase())//
+						.replace($ENTITY_first_lower$, this.firstLower(entityName))//
+						.replace($ENTITY_upper$, entityName.toUpperCase())//
+						.replace($ENTITY_camel$, this.firstUpper(entityName))//
+						.replace($ENTITY_plural$, this.plural(entityName))//
+						.replace($ENTITY_lower_plural$, this.plural(entityName).toLowerCase())//
+						.replace($ENTITY_first_lower_plural$, this.firstLower(this.plural(entityName)))//
 					);
 				}
 				newFileContents = parts[0] + fields.toString() + parts[1];
@@ -132,12 +145,12 @@ public final class UtilsReplacer {
 					if (!Modifier.isStatic(classFieldAux.getModifiers())) {
 						final String classFieldName = classFieldAux.getName();
 						fields.append(fieldTemplate//
-								.replace($FIELD_lower$, classFieldName.toLowerCase())//
-								.replace($FIELD_upper$, classFieldName.toUpperCase())//
-								.replace($FIELD_camel$, this.camel(classFieldName))//
-								.replace($FIELD_TYPE$form$, this.form(classFieldAux.getType().getSimpleName()))//
-								.replace($FIELD_TYPE$, classFieldAux.getType().getSimpleName())//
-								.replace($FIELD$, classFieldName)//
+							.replace($FIELD_lower$, classFieldName.toLowerCase())//
+							.replace($FIELD_upper$, classFieldName.toUpperCase())//
+							.replace($FIELD_camel$, this.firstUpper(classFieldName))//
+							.replace($FIELD_TYPE$form$, this.form(classFieldAux.getType().getSimpleName()))//
+							.replace($FIELD_TYPE$, classFieldAux.getType().getSimpleName())//
+							.replace($FIELD$, classFieldName)//
 						);
 					}
 				}
@@ -149,8 +162,12 @@ public final class UtilsReplacer {
 		final String entity = clazz.getSimpleName();
 		newFileContents = newFileContents.replace($ENTITY$, entity);
 		newFileContents = newFileContents.replace($ENTITY_lower$, entity.toLowerCase());
+		newFileContents = newFileContents.replace($ENTITY_first_lower$, this.firstLower(entity));
 		newFileContents = newFileContents.replace($ENTITY_upper$, entity.toUpperCase());
-		newFileContents = newFileContents.replace($ENTITY_camel$, this.camel(entity));
+		newFileContents = newFileContents.replace($ENTITY_camel$, this.firstUpper(entity));
+		newFileContents = newFileContents.replace($ENTITY_plural$, this.plural(entity));
+		newFileContents = newFileContents.replace($ENTITY_lower_plural$, this.plural(entity).toLowerCase());
+		newFileContents = newFileContents.replace($ENTITY_first_lower_plural$, this.firstLower(this.plural(entity)));
 		return newFileContents;
 
 	}
@@ -159,7 +176,7 @@ public final class UtilsReplacer {
 		return "text";
 	}
 
-	private final String camel(final String str) {
+	private final String firstUpper(final String str) {
 		if (str == null) {
 			return null;
 		} else if (str.length() <= 0) {
@@ -168,6 +185,28 @@ public final class UtilsReplacer {
 			return str.toUpperCase();
 		} else {
 			return str.substring(0, 1).toUpperCase() + str.substring(1);
+		}
+	}
+
+	private final String firstLower(final String str) {
+		if (str == null) {
+			return null;
+		} else if (str.length() <= 0) {
+			return "";
+		} else if (str.length() == 1) {
+			return str.toLowerCase();
+		} else {
+			return str.substring(0, 1).toLowerCase() + str.substring(1);
+		}
+	}
+
+	private final String plural(final String str) {
+		if (str == null) {
+			return null;
+		} else if (str.equals("ChaveAcesso")) {
+			return "ChavesAcesso";
+		} else {
+			return str + "s";
 		}
 	}
 
