@@ -125,6 +125,19 @@ File contents replacer based on Java classes.
 	</body>
 	</html>
 
+## Or even this (Three.template.txt):
+
+	$ENTITIES$
+	nome: $ENTITY$
+	$$ENTITIES$
+
+and Car.java and Pessoa.java
+
+### Into this (Three.txt):
+
+	nome: Pessoa
+	nome: Car
+
 ### Initial setup:
 
 	ssh-keygen -t rsa -b 4096 -C "Replacer@github"
